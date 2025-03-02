@@ -1143,12 +1143,14 @@ html {
   .hero-copy {
     position: relative;
     z-index: 1;
+    right: 211px;
   }
   .hero-cta {
     margin-bottom: 40px;
   }
   .hero-figure {
     position: relative;
+    right: -205px;
   }
   .hero-figure svg {
     width: 100%;
@@ -2135,7 +2137,7 @@ html {
   
   /* Footer */
   footer {
-    background-color: #333;
+    background-color: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     padding: 50px 5%;
   }
@@ -2640,7 +2642,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Semi-transparent black */
   padding: 15px 20px;
   position: fixed;
   top: 0;
@@ -2830,4 +2832,10 @@ body {
   transform: translateX(-50%); /* Centers the heading */
   padding: 10px 20px;
   border-radius: 8px;
+}
+.brand header-brand{
+  background-color: linear-gradient(135deg, #667eea, #764ba2)
+}
+.site-header{
+  background-color: linear-gradient(135deg, #667eea, #764ba2)
 }
