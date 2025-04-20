@@ -11,7 +11,6 @@ if (location.href.substr(0, 5) !== 'https') location.href = 'https' + location.h
  * @license For commercial or closed source, contact us at info.mirotalk@gmail.com
  * @author  Miroslav Pejic - miroslav.pejic.85@gmail.com
  * @version 1.0.0
- *
  */
 
 // ####################################################
@@ -110,75 +109,231 @@ let isButtonsBarOver = false;
 let isRoomLocked = false;
 
 // ####################################################
+// LANGUAGE SETTINGS
+// ####################################################
+
+const languages = {
+    en: {
+        shareRoom: 'Share room',
+        startAudio: 'Start the audio',
+        stopAudio: 'Stop the audio',
+        startVideo: 'Start the video',
+        stopVideo: 'Stop the video',
+        startScreen: 'Start screen share',
+        stopScreen: 'Stop screen share',
+        swapCamera: 'Swap the camera',
+        toggleChat: 'Toggle the chat',
+        toggleWhiteboard: 'Toggle the whiteboard',
+        toggleSettings: 'Toggle the settings',
+        aboutProject: 'About this project',
+        leaveRoom: 'Leave room',
+        close: 'Close',
+        devices: 'Devices',
+        recording: 'Recording',
+        room: 'Room',
+        videoShare: 'Video share',
+        aspect: 'Aspect',
+        styling: 'Styling',
+        // languages: 'Languages',
+        accept: 'Accept',
+        reject: 'Reject',
+        lobbyMode: 'Lobby mode lets you protect your meeting by only allowing people to enter after a formal approval by a moderator',
+        toggleSounds: 'Toggle the sounds notifications',
+        transparentBackground: 'Toggle transparent background',
+        backgroundColor: 'Background color',
+        drawingColor: 'Drawing color',
+        drawingMode: 'Drawing mode',
+        objectMode: 'Object mode',
+        undo: 'Undo',
+        redo: 'Redo',
+        addImageFile: 'Add image file',
+        addImageUrl: 'Add image url',
+        addText: 'Add text',
+        addLine: 'Add line',
+        addRectangle: 'Add rectangle',
+        addCircle: 'Add circle',
+        save: 'Save',
+        eraser: 'Eraser',
+        clean: 'Clean',
+        cleanText: 'Clean',
+        paste: 'Paste',
+        send: 'Send',
+        showChatOnMsg: "Show me when I'm receive a new message",
+        startSpeechRecognition: 'Start speech recognition',
+        stopSpeechRecognition: 'Stop speech recognition',
+        emoji: 'Emoji',
+        markdown: 'Markdown',
+        shareFile: 'Share file',
+        sessionTime: 'Session time',
+    },
+    es: {
+        shareRoom: 'Compartir sala',
+        startAudio: 'Iniciar audio',
+        stopAudio: 'Detener audio',
+        startVideo: 'Iniciar video',
+        stopVideo: 'Detener video',
+        startScreen: 'Iniciar compartir pantalla',
+        stopScreen: 'Detener compartir pantalla',
+        swapCamera: 'Cambiar cámara',
+        toggleChat: 'Alternar chat',
+        toggleWhiteboard: 'Alternar pizarra',
+        toggleSettings: 'Alternar configuraciones',
+        aboutProject: 'Acerca de este proyecto',
+        leaveRoom: 'Salir de la sala',
+        close: 'Cerrar',
+        devices: 'Dispositivos',
+        recording: 'Grabación',
+        room: 'Sala',
+        videoShare: 'Compartir video',
+        aspect: 'Aspecto',
+        styling: 'Estilo',
+        // languages: 'Idiomas',
+        accept: 'Aceptar',
+        reject: 'Rechazar',
+        lobbyMode: 'El modo lobby permite proteger su reunión permitiendo que las personas ingresen solo después de una aprobación formal por parte de un moderador',
+        toggleSounds: 'Alternar notificaciones de sonido',
+        transparentBackground: 'Alternar fondo transparente',
+        backgroundColor: 'Color de fondo',
+        drawingColor: 'Color de dibujo',
+        drawingMode: 'Modo de dibujo',
+        objectMode: 'Modo de objeto',
+        undo: 'Deshacer',
+        redo: 'Rehacer',
+        addImageFile: 'Agregar archivo de imagen',
+        addImageUrl: 'Agregar URL de imagen',
+        addText: 'Agregar texto',
+        addLine: 'Agregar línea',
+        addRectangle: 'Agregar rectángulo',
+        addCircle: 'Agregar círculo',
+        save: 'Guardar',
+        eraser: 'Borrador',
+        clean: 'Limpiar',
+        cleanText: 'Limpiar',
+        paste: 'Pegar',
+        send: 'Enviar',
+        showChatOnMsg: "Mostrarme cuando reciba un nuevo mensaje",
+        startSpeechRecognition: 'Iniciar reconocimiento de voz',
+        stopSpeechRecognition: 'Detener reconocimiento de voz',
+        emoji: 'Emoji',
+        markdown: 'Markdown',
+        shareFile: 'Compartir archivo',
+        sessionTime: 'Tiempo de sesión',
+    },
+    // Add more languages as needed
+};
+
+// let currentLanguage = 'en';
+
+// function setLanguage(lang) {
+//     currentLanguage = lang;
+//     updateUIText();
+// }
+// Room.js or main.js
+
+let currentLanguage = 'en';
+
+function setLanguage(lang) {
+  console.log(`🌐 Selected Language: ${lang}`);
+  currentLanguage = lang;
+  updateUIText(); // optional
+}
+
+function updateUIText() {
+    const lang = languages[currentLanguage];
+    setTippy('shareButton', lang.shareRoom, 'right');
+    setTippy('startAudioButton', lang.startAudio, 'right');
+    setTippy('stopAudioButton', lang.stopAudio, 'right');
+    setTippy('startVideoButton', lang.startVideo, 'right');
+    setTippy('stopVideoButton', lang.stopVideo, 'right');
+    setTippy('startScreenButton', lang.startScreen, 'right');
+    setTippy('stopScreenButton', lang.stopScreen, 'right');
+    setTippy('swapCameraButton', lang.swapCamera, 'right');
+    setTippy('chatButton', lang.toggleChat, 'right');
+    setTippy('whiteboardButton', lang.toggleWhiteboard, 'right');
+    setTippy('settingsButton', lang.toggleSettings, 'right');
+    setTippy('aboutButton', lang.aboutProject, 'right');
+    setTippy('exitButton', lang.leaveRoom, 'right');
+    setTippy('mySettingsCloseBtn', lang.close, 'right');
+    // setTippy('tabDevicesBtn', lang.devices, 'top');
+    // setTippy('tabRecordingBtn', lang.recording, 'top');
+    // setTippy('tabRoomBtn', lang.room, 'top');
+    // setTippy('tabVideoShareBtn', lang.videoShare, 'top');
+    // setTippy('tabAspectBtn', lang.aspect, 'top');
+    // setTippy('tabStylingBtn', lang.styling, 'top');
+    // setTippy('tabLanguagesBtn', lang.languages, 'top');
+    // setTippy('lobbyAcceptAllBtn', lang.accept, 'top');
+    // setTippy('lobbyRejectAllBtn', lang.reject, 'top');
+    setTippy('switchLobby', lang.lobbyMode, 'right');
+    setTippy('switchSounds', lang.toggleSounds, 'right');
+    setTippy('whiteboardGhostButton', lang.transparentBackground, 'bottom');
+    setTippy('wbBackgroundColorEl', lang.backgroundColor, 'bottom');
+    setTippy('wbDrawingColorEl', lang.drawingColor, 'bottom');
+    setTippy('whiteboardPencilBtn', lang.drawingMode, 'bottom');
+    setTippy('whiteboardObjectBtn', lang.objectMode, 'bottom');
+    setTippy('whiteboardUndoBtn', lang.undo, 'bottom');
+    setTippy('whiteboardRedoBtn', lang.redo, 'bottom');
+    setTippy('whiteboardImgFileBtn', lang.addImageFile, 'bottom');
+    setTippy('whiteboardImgUrlBtn', lang.addImageUrl, 'bottom');
+    setTippy('whiteboardTextBtn', lang.addText, 'bottom');
+    setTippy('whiteboardLineBtn', lang.addLine, 'bottom');
+    setTippy('whiteboardRectBtn', lang.addRectangle, 'bottom');
+    setTippy('whiteboardCircleBtn', lang.addCircle, 'bottom');
+    setTippy('whiteboardSaveBtn', lang.save, 'bottom');
+    setTippy('whiteboardEraserBtn', lang.eraser, 'bottom');
+    setTippy('whiteboardCleanBtn', lang.clean, 'bottom');
+    setTippy('whiteboardCloseBtn', lang.close, 'right');
+    setTippy('chatCleanTextButton', lang.cleanText, 'top');
+    setTippy('chatPasteButton', lang.paste, 'top');
+    setTippy('chatSendButton', lang.send, 'top');
+    setTippy('showChatOnMsg', lang.showChatOnMsg, 'top');
+    setTippy('chatSpeechStartButton', lang.startSpeechRecognition, 'top');
+    setTippy('chatSpeechStopButton', lang.stopSpeechRecognition, 'top');
+    setTippy('chatEmojiButton', lang.emoji, 'top');
+    setTippy('chatMarkdownButton', lang.markdown, 'top');
+    setTippy('chatShareFileButton', lang.shareFile, 'top');
+    setTippy('chatCleanButton', lang.clean, 'bottom');
+    setTippy('chatSaveButton', lang.save, 'bottom');
+    setTippy('chatGhostButton', lang.transparentBackground, 'bottom');
+    setTippy('chatCloseButton', lang.close, 'right');
+    setTippy('participantsCloseBtn', lang.close, 'left');
+    setTippy('sessionTime', lang.sessionTime, 'top');
+}
+
+// ####################################################
 // INIT ROOM
 // ####################################################
 
 function initClient() {
     if (!DetectRTC.isMobileDevice) {
-        setTippy('shareButton', 'Share room', 'right');
-        setTippy('startAudioButton', 'Start the audio', 'right');
-        setTippy('stopAudioButton', 'Stop the audio', 'right');
-        setTippy('startVideoButton', 'Start the video', 'right');
-        setTippy('stopVideoButton', 'Stop the video', 'right');
-        setTippy('startScreenButton', 'Start screen share', 'right');
-        setTippy('stopScreenButton', 'Stop screen share', 'right');
-        setTippy('swapCameraButton', 'Swap the camera', 'right');
-        setTippy('chatButton', 'Toggle the chat', 'right');
-        setTippy('whiteboardButton', 'Toggle the whiteboard', 'right');
-        setTippy('settingsButton', 'Toggle the settings', 'right');
-        setTippy('aboutButton', 'About this project', 'right');
-        setTippy('exitButton', 'Leave room', 'right');
-        setTippy('mySettingsCloseBtn', 'Close', 'right');
-        setTippy('tabDevicesBtn', 'Devices', 'top');
-        setTippy('tabRecordingBtn', 'Recording', 'top');
-        setTippy('tabRoomBtn', 'Room', 'top');
-        setTippy('tabVideoShareBtn', 'Video share', 'top');
-        setTippy('tabAspectBtn', 'Aspect', 'top');
-        setTippy('tabStylingBtn', 'Styling', 'top');
-        setTippy('tabLanguagesBtn', 'Languages', 'top');
-        setTippy('lobbyAcceptAllBtn', 'Accept', 'top');
-        setTippy('lobbyRejectAllBtn', 'Reject', 'top');
-        setTippy(
-            'switchLobby',
-            'Lobby mode lets you protect your meeting by only allowing people to enter after a formal approval by a moderator',
-            'right',
-        );
-        setTippy('switchSounds', 'Toggle the sounds notifications', 'right');
-        setTippy('whiteboardGhostButton', 'Toggle transparent background', 'bottom');
-        setTippy('wbBackgroundColorEl', 'Background color', 'bottom');
-        setTippy('wbDrawingColorEl', 'Drawing color', 'bottom');
-        setTippy('whiteboardPencilBtn', 'Drawing mode', 'bottom');
-        setTippy('whiteboardObjectBtn', 'Object mode', 'bottom');
-        setTippy('whiteboardUndoBtn', 'Undo', 'bottom');
-        setTippy('whiteboardRedoBtn', 'Redo', 'bottom');
-        setTippy('whiteboardImgFileBtn', 'Add image file', 'bottom');
-        setTippy('whiteboardImgUrlBtn', 'Add image url', 'bottom');
-        setTippy('whiteboardTextBtn', 'Add text', 'bottom');
-        setTippy('whiteboardLineBtn', 'Add line', 'bottom');
-        setTippy('whiteboardRectBtn', 'Add rectangle', 'bottom');
-        setTippy('whiteboardCircleBtn', 'Add circle', 'bottom');
-        setTippy('whiteboardSaveBtn', 'Save', 'bottom');
-        setTippy('whiteboardEraserBtn', 'Eraser', 'bottom');
-        setTippy('whiteboardCleanBtn', 'Clean', 'bottom');
-        setTippy('whiteboardCloseBtn', 'Close', 'right');
-        setTippy('chatCleanTextButton', 'Clean', 'top');
-        setTippy('chatPasteButton', 'Paste', 'top');
-        setTippy('chatSendButton', 'Send', 'top');
-        setTippy('showChatOnMsg', "Show me when I'm receive a new message", 'top');
-        setTippy('chatSpeechStartButton', 'Start speech recognition', 'top');
-        setTippy('chatSpeechStopButton', 'Stop speech recognition', 'top');
-        setTippy('chatEmojiButton', 'Emoji', 'top');
-        setTippy('chatMarkdownButton', 'Markdown', 'top');
-        setTippy('chatShareFileButton', 'Share file', 'top');
-        setTippy('chatCleanButton', 'Clean', 'bottom');
-        setTippy('chatSaveButton', 'Save', 'bottom');
-        setTippy('chatGhostButton', 'Toggle transparent background', 'bottom');
-        setTippy('chatCloseButton', 'Close', 'right');
-        setTippy('participantsCloseBtn', 'Close', 'left');
-        setTippy('sessionTime', 'Session time', 'top');
+        updateUIText();
     }
     setupWhiteboard();
     initEnumerateDevices();
+
+    // Initialize speech recognition elements - Part of the 2nd Code
+    // const languageSelect = document.createElement('select');
+    // languageSelect.id = 'languageSelect';
+
+    const languagesArray = Object.keys(languages);
+
+    languagesArray.forEach(lang => {
+        const option = document.createElement('option');
+        option.value = lang;
+        option.textContent = languages[lang].languages;
+         // Use 'languages' to display name
+        languageSelect.appendChild(option);
+    });
+
+    const startButton = document.createElement('button');
+    startButton.id = 'startButton';
+    // startButton.textContent = 'Start Listening';
+
+    document.body.appendChild(languageSelect);
+    document.body.appendChild(startButton);
+
+    // Event listeners from the 2nd Code
+    document.getElementById('languageSelect').addEventListener('change', setLanguage);
+    document.getElementById('startButton').addEventListener('click', startSpeech);
 }
 
 // ####################################################
@@ -468,6 +623,8 @@ function whoAreYou() {
     if (!isVideoAllowed) hide(initVideoButton);
     if (!isAudioAllowed || !isVideoAllowed) hide(initAudioVideoButton);
     isAudioVideoAllowed = isAudioAllowed && isVideoAllowed;
+
+
 }
 
 function handleAudio(e) {
@@ -580,6 +737,8 @@ async function shareRoom(useNavigator = false) {
         });
         makeRoomQR();
     }
+
+
 }
 
 // ####################################################
@@ -1130,141 +1289,282 @@ function handleInputs() {
 // ####################################################
 // ROOM CLIENT EVENT LISTNERS
 // ####################################################
-
 function handleRoomClientEvents() {
+    // Existing event listeners
     rc.on(RoomClient.EVENTS.startRec, () => {
-        console.log('Room Client start recoding');
+        console.log('Room Client start recording');
         hide(startRecButton);
         show(stopRecButton);
         show(pauseRecButton);
         startRecordingTimer();
     });
+
     rc.on(RoomClient.EVENTS.pauseRec, () => {
-        console.log('Room Client pause recoding');
+        console.log('Room Client pause recording');
         hide(pauseRecButton);
         show(resumeRecButton);
     });
+
     rc.on(RoomClient.EVENTS.resumeRec, () => {
-        console.log('Room Client resume recoding');
+        console.log('Room Client resume recording');
         hide(resumeRecButton);
         show(pauseRecButton);
     });
+
     rc.on(RoomClient.EVENTS.stopRec, () => {
-        console.log('Room Client stop recoding');
+        console.log('Room Client stop recording');
         hide(stopRecButton);
         hide(pauseRecButton);
         hide(resumeRecButton);
         show(startRecButton);
         stopRecordingTimer();
     });
-    rc.on(RoomClient.EVENTS.raiseHand, () => {
-        console.log('Room Client raise hand');
-        hide(raiseHandButton);
-        show(lowerHandButton);
-        setColor(lowerHandButton, 'green');
-    });
-    rc.on(RoomClient.EVENTS.lowerHand, () => {
-        console.log('Room Client lower hand');
-        hide(lowerHandButton);
-        show(raiseHandButton);
-    });
+
     rc.on(RoomClient.EVENTS.startAudio, () => {
         console.log('Room Client start audio');
         hide(startAudioButton);
         show(stopAudioButton);
-        setColor(startAudioButton, 'red');
-        setAudioButtonsDisabled(false);
     });
-    rc.on(RoomClient.EVENTS.pauseAudio, () => {
-        console.log('Room Client pause audio');
-        hide(stopAudioButton);
-        show(startAudioButton);
-    });
-    rc.on(RoomClient.EVENTS.resumeAudio, () => {
-        console.log('Room Client resume audio');
-        hide(startAudioButton);
-        show(stopAudioButton);
-    });
+
     rc.on(RoomClient.EVENTS.stopAudio, () => {
         console.log('Room Client stop audio');
         hide(stopAudioButton);
         show(startAudioButton);
-        setAudioButtonsDisabled(false);
     });
+
     rc.on(RoomClient.EVENTS.startVideo, () => {
         console.log('Room Client start video');
         hide(startVideoButton);
         show(stopVideoButton);
-        setColor(startVideoButton, 'red');
-        setVideoButtonsDisabled(false);
     });
-    rc.on(RoomClient.EVENTS.pauseVideo, () => {
-        console.log('Room Client pause video');
-        hide(stopVideoButton);
-        show(startVideoButton);
-    });
-    rc.on(RoomClient.EVENTS.resumeVideo, () => {
-        console.log('Room Client resume video');
-        hide(startVideoButton);
-        show(stopVideoButton);
-    });
+
     rc.on(RoomClient.EVENTS.stopVideo, () => {
         console.log('Room Client stop video');
         hide(stopVideoButton);
         show(startVideoButton);
-        setVideoButtonsDisabled(false);
-        isVideoPrivacyActive = false;
     });
+
     rc.on(RoomClient.EVENTS.startScreen, () => {
         console.log('Room Client start screen');
         hide(startScreenButton);
         show(stopScreenButton);
     });
-    rc.on(RoomClient.EVENTS.pauseScreen, () => {
-        console.log('Room Client pause screen');
-    });
-    rc.on(RoomClient.EVENTS.resumeScreen, () => {
-        console.log('Room Client resume screen');
-    });
+
     rc.on(RoomClient.EVENTS.stopScreen, () => {
         console.log('Room Client stop screen');
         hide(stopScreenButton);
         show(startScreenButton);
     });
-    rc.on(RoomClient.EVENTS.roomLock, () => {
-        console.log('Room Client lock room');
-        hide(lockRoomButton);
-        show(unlockRoomButton);
-        setColor(unlockRoomButton, 'red');
-        isRoomLocked = true;
+
+    rc.on(RoomClient.EVENTS.raiseHand, () => {
+        console.log('Room Client raise hand');
+        hide(raiseHandButton);
+        show(lowerHandButton);
     });
-    rc.on(RoomClient.EVENTS.roomUnlock, () => {
-        console.log('Room Client unlock room');
-        hide(unlockRoomButton);
-        show(lockRoomButton);
-        isRoomLocked = false;
+
+    rc.on(RoomClient.EVENTS.lowerHand, () => {
+        console.log('Room Client lower hand');
+        hide(lowerHandButton);
+        show(raiseHandButton);
     });
-    rc.on(RoomClient.EVENTS.lobbyOn, () => {
-        console.log('Room Client room lobby enabled');
-        if (isRulesActive && !isPresenter) {
-            hide(lobbyButton);
-        }
-        sound('lobby');
-        isLobbyEnabled = true;
-    });
-    rc.on(RoomClient.EVENTS.lobbyOff, () => {
-        console.log('Room Client room lobby disabled');
-        isLobbyEnabled = false;
-    });
+
     rc.on(RoomClient.EVENTS.exitRoom, () => {
         console.log('Room Client leave room');
-        if (surveyActive) {
-            leaveFeedback();
-        } else {
-            openURL('/newroom');
-        }
+        openURL('/newroom');
     });
+
+    rc.on(RoomClient.EVENTS.changeLanguage, (language) => {
+        console.log(`Target language set to: ${language}`);
+        const selectedLang = document.getElementById('selectedLanguage');
+        if (selectedLang) selectedLang.textContent = language;
+    });
+
+    const translateDropdown = document.getElementById('translateDropdown');
+    const translationDisplayArea = document.getElementById('translationDisplayArea');
+    const translatedTextElement = document.getElementById('translatedText');
+    let isTranslationActive = false;
+    const staticMessage = "This is the text I want to display."; // The message to display
+
+    // Initially hide the caption area
+    if (translationDisplayArea) {
+        translationDisplayAreastyle.display = 'none';
+    }
+
+    if (translateDropdown) {
+        translateDropdown.addEventListener('change', () => {
+            const selectedOption = translateDropdown.value;
+
+            if (selectedOption === 'text') {
+                isTranslationActive = true;
+                if (translationDisplayArea) {
+                    translationDisplayArea.style.display = 'block';
+                    translatedTextElement.textContent = staticMessage; // Display the specific message
+                    // **[INTEGRATION POINT: START TEXT TRANSLATION]**
+                    rc.emit(RoomClient.EVENTS.startTextTranslation);
+                }
+            } else if (selectedOption === 'voice') {
+                isTranslationActive = true;
+                if (translationDisplayArea) {
+                    translationDisplayArea.style.display = 'block';
+                    translatedTextElement.textContent = "Translation (Voice) Active...";
+                    rc.emit(RoomClient.EVENTS.startVoiceTranslation);
+                }
+            } else {
+                isTranslationActive = false;
+                if (translationDisplayArea) {
+                    myTextContainer.style.display = 'none';
+                    translatedTextElement.textContent = "";
+                    rc.emit(RoomClient.EVENTS.stopTranslation);
+                }
+            }
+        });
+    }
+
+    function updateTranslatedText(text) {
+        if (isTranslationActive && translatedTextElement) {
+            translatedTextElement.textContent = text;
+        }
+    }
+
+    // rc.on(RoomClient.EVENTS.receivedTranslatedText, (translatedText) => {
+    //     updateTranslatedText(translatedText);
+    // });
+
+    const whiteboardButton = document.getElementById('whiteboardButton');
+    if (whiteboardButton) {
+        whiteboardButton.addEventListener('click', () => {
+            console.log('Whiteboard button clicked (emit)');
+            rc.emit(RoomClient.EVENTS.startWhiteboard); // Tumcha existing event
+        });
+    }
+
+    const whiteboardPencilBtn = document.getElementById('whiteboardPencilBtn');
+    if (whiteboardPencilBtn) {
+        whiteboardPencilBtn.onclick = () => {
+            console.log('Whiteboard pencil clicked (emit)');
+            rc.emit('whiteboardPencil'); // Define a new event in RoomClient.EVENTS if needed
+        };
+    }
+
+    const whiteboardObjectBtn = document.getElementById('whiteboardObjectBtn');
+    if (whiteboardObjectBtn) {
+        whiteboardObjectBtn.onclick = () => {
+            console.log('Whiteboard object clicked (emit)');
+            rc.emit('whiteboardObject'); // Define a new event
+        };
+    }
+
+    const whiteboardUndoBtn = document.getElementById('whiteboardUndoBtn');
+    if (whiteboardUndoBtn) {
+        whiteboardUndoBtn.onclick = () => {
+            console.log('Whiteboard undo clicked (emit)');
+            rc.emit('whiteboardUndo'); // Define a new event
+        };
+    }
+
+    const whiteboardRedoBtn = document.getElementById('whiteboardRedoBtn');
+    if (whiteboardRedoBtn) {
+        whiteboardRedoBtn.onclick = () => {
+            console.log('Whiteboard redo clicked (emit)');
+            rc.emit('whiteboardRedo');
+        };
+    }
+
+    const whiteboardSaveBtn = document.getElementById('whiteboardSaveBtn');
+    if (whiteboardSaveBtn) {
+        whiteboardSaveBtn.onclick = () => {
+            console.log('Whiteboard save clicked (emit)');
+            rc.emit('whiteboardSave');
+        };
+    }
+
+    const whiteboardImgFileBtn = document.getElementById('whiteboardImgFileBtn');
+    if (whiteboardImgFileBtn) {
+        whiteboardImgFileBtn.onclick = () => {
+            console.log('Whiteboard imgFile clicked (emit)');
+            rc.emit('whiteboardImgFile');
+        };
+    }
+
+    const whiteboardImgUrlBtn = document.getElementById('whiteboardImgUrlBtn');
+    if (whiteboardImgUrlBtn) {
+        whiteboardImgUrlBtn.onclick = () => {
+            console.log('Whiteboard imgUrl clicked (emit)');
+            rc.emit('whiteboardImgUrl');
+        };
+    }
+
+    const whiteboardTextBtn = document.getElementById('whiteboardTextBtn');
+    if (whiteboardTextBtn) {
+        whiteboardTextBtn.onclick = () => {
+            console.log('Whiteboard text clicked (emit)');
+            rc.emit('whiteboardText');
+        };
+    }
+
+    const whiteboardLineBtn = document.getElementById('whiteboardLineBtn');
+    if (whiteboardLineBtn) {
+        whiteboardLineBtn.onclick = () => {
+            console.log('Whiteboard line clicked (emit)');
+            rc.emit('whiteboardLine');
+        };
+    }
+
+    const whiteboardRectBtn = document.getElementById('whiteboardRectBtn');
+    if (whiteboardRectBtn) {
+        whiteboardRectBtn.onclick = () => {
+            console.log('Whiteboard rect clicked (emit)');
+            rc.emit('whiteboardRect');
+        };
+    }
+
+    const whiteboardCircleBtn = document.getElementById('whiteboardCircleBtn');
+    if (whiteboardCircleBtn) {
+        whiteboardCircleBtn.onclick = () => {
+            console.log('Whiteboard circle clicked (emit)');
+            rc.emit('whiteboardCircle');
+        };
+    }
+
+    const whiteboardEraserBtn = document.getElementById('whiteboardEraserBtn');
+    if (whiteboardEraserBtn) {
+        whiteboardEraserBtn.onclick = () => {
+            console.log('Whiteboard eraser clicked (emit)');
+            rc.emit('whiteboardEraser');
+        };
+    }
+
+    const whiteboardCleanBtn = document.getElementById('whiteboardCleanBtn');
+    if (whiteboardCleanBtn) {
+        whiteboardCleanBtn.onclick = () => {
+            console.log('Whiteboard clean clicked (emit)');
+            rc.emit('whiteboardClean');
+        };
+    }
+
+    const whiteboardCloseBtn = document.getElementById('whiteboardCloseBtn');
+    if (whiteboardCloseBtn) {
+        whiteboardCloseBtn.onclick = () => {
+            console.log('Whiteboard close clicked (emit)');
+            rc.emit('whiteboardClose');
+        };
+    }
+
+    // Participants Button Integration
+    const participantsButton = document.getElementById('participantsButton');
+    if (participantsButton) {
+        participantsButton.onclick = () => {
+            console.log('Participants button clicked (emit)');
+            rc.emit('toggleParticipants');
+        };
+    }
 }
+
+document.addEventListener('DOMContentLoaded', handleRoomClientEvents); 
+      
+      
+    
+
 
 // ####################################################
 // UTILITY
@@ -2101,3 +2401,37 @@ function showAbout() {
         },
     });
 }
+// ####################################################
+// Translate
+// ####################################################
+
+let isTranslationActive = false;
+const captionArea = document.getElementById('captionArea');
+const translatedTextElement = document.getElementById('translatedText');
+
+function enableTranslateText() {
+    isTranslationActive = !isTranslationActive; // Toggle the state
+
+    if (isTranslationActive) {
+        captionArea.style.display = 'block';
+        // Potentially fetch and display an initial message like "Translation Active"
+        translatedTextElement.textContent = "Translation Active...";
+    } else {
+        captionArea.style.display = 'none';
+        translatedTextElement.textContent = ""; // Clear the text
+    }
+
+    // You'll also need to initiate or stop the actual translation process here
+    // (e.g., connecting to a WebSocket, starting an API call, etc.)
+}
+
+// Example: Assuming your "Translate Text" button has an ID of "translateButton"
+const translateButton = document.getElementById('translateButton');
+if (translateButton) {
+    translateButton.addEventListener('click', enableTranslateText);
+}
+
+function updateTranslatedText(text) {
+    translatedTextElement.textContent = text;
+}
+

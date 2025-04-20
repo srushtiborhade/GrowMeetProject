@@ -24,6 +24,7 @@ const html = {
     audioOff: 'fas fa-microphone-slash',
     videoOn: 'fas fa-video',
     videoOff: 'fas fa-video-slash',
+
     userName: 'username',
     userHand: 'fas fa-hand-paper pulsate',
     fullScreen: 'fas fa-expand',
@@ -37,6 +38,7 @@ const html = {
     bg: 'fas fa-circle-half-stroke',
     pin: 'fas fa-map-pin',
     videoPrivacy: 'far fa-circle',
+    lang: 'fas fa-language' 
 };
 
 const image = {
